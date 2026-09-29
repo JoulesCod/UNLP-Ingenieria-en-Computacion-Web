@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="es" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JoulesCod // UNLP Showcase - Cyber Hub</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        cyberDark: '#080a0f',
+                        cyberCard: 'rgba(15, 18, 28, 0.95)',
+                        cyberBorder: '#1e2638',
+                        neonSalmon: '#ff7a7a',
+                        neonPink: '#ff2a6d',
+                        neonCyan: '#05d9e8',
+                        neonYellow: '#f5fe00',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'Fira Code', 'monospace'],
+                    },
+                    boxShadow: {
+                        'neon-salmon': '0 0 15px rgba(255, 122, 122, 0.35), inset 0 0 10px rgba(255, 122, 122, 0.15)',
+                        'neon-cyan': '0 0 15px rgba(5, 217, 232, 0.35), inset 0 0 10px rgba(5, 217, 232, 0.15)',
+                        'cyber-card': '0 10px 30px rgba(0, 0, 0, 0.8)',
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #080a0f;
+            color: #e2e8f0;
+            overflow-x: hidden;
+            background-image: 
+                radial-gradient(circle at 50% 0%, rgba(255, 122, 122, 0.08) 0%, transparent 60%),
+                linear-gradient(rgba(5, 217, 232, 0.04) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(5, 217, 232, 0.04) 1px, transparent 1px);
+            background-size: 100% 100%, 32px 32px, 32px 32px;
+            background-attachment: fixed;
+        }
+
+        .cyber-corner {
+            position: relative;
+        }
+        .cyber-corner::before {
+            content: '';
+            position: absolute;
+            top: -1px;
+            left: -1px;
+            width: 8px;
+            height: 8px;
+            border-top: 2px solid #ff7a7a;
+            border-left: 2px solid #ff7a7a;
+            pointer-events: none;
+        }
+        .cyber-corner::after {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            right: -1px;
+            width: 8px;
+            height: 8px;
+            border-bottom: 2px solid #05d9e8;
+            border-right: 2px solid #05d9e8;
+            pointer-events: none;
+        }
+
+        .cyber-card-salmon {
+            border: 1px solid rgba(255, 122, 122, 0.25);
+            transition: all 0.25s ease-in-out;
+        }
+        .cyber-card-salmon:hover {
+            border-color: #ff7a7a;
+            box-shadow: 0 0 20px rgba(255, 122, 122, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .cyber-card-cyan {
+            border: 1px solid rgba(5, 217, 232, 0.25);
+            transition: all 0.25s ease-in-out;
+        }
+        .cyber-card-cyan:hover {
+            border-color: #05d9e8;
+            box-shadow: 0 0 20px rgba(5, 217, 232, 0.3);
+            transform: translateY(-2px);
+        }
+
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #080a0f;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #ff7a7a;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #05d9e8;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between items-center p-3 sm:p-6 lg:p-8 selection:bg-neonSalmon selection:text-black relative">
+
+    <!-- Toast Notification -->
+    <div id="toast" class="fixed bottom-6 right-6 z-50 transform translate-y-24 opacity-0 transition-all duration-300 ease-out bg-cyberDark border border-neonCyan text-neonCyan px-5 py-3 shadow-neon-cyan flex items-center space-x-3 pointer-events-none font-mono text-xs">
+        <i data-lucide="terminal" class="w-4 h-4 text-neonCyan animate-pulse"></i>
+        <div>
+            <span class="text-gray-400">[SYSTEM]:</span> <span id="toast-message" class="text-white font-bold">¡Copiado al portapapeles!</span>
+        </div>
+    </div>
+
+    <!-- Main Container -->
+    <main class="w-full max-w-4xl mx-auto space-y-6 my-auto z-10">
+
+        <!-- Top Status Bar (Cyber HUD) -->
+        <div class="flex items-center justify-between text-[11px] font-mono text-gray-500 border-b border-gray-800/80 pb-2 px-1">
+            <div class="flex items-center space-x-2">
+                <span class="inline-block w-2 h-2 rounded-full bg-neonSalmon animate-pulse"></span>
+                <span class="text-neonSalmon font-bold tracking-widest">SYSTEM // ONLINE</span>
+                <span class="text-gray-600">|</span>
+                <span class="text-gray-400">UNLP REPOSITORY HUB v2.5</span>
+            </div>
+            <div class="flex items-center space-x-3 text-gray-400 font-mono text-[11px]">
+                <span>DEV: JoulesCod</span>
+                <span class="text-gray-600">•</span>
+                <span>ARGENTINA</span>
+            </div>
+        </div>
+
+        <!-- Hero Header Card -->
+        <header class="relative bg-cyberCard border border-cyberBorder rounded-none p-6 sm:p-8 backdrop-blur-xl overflow-hidden shadow-cyber-card cyber-corner">
+            
+            <div class="absolute -top-20 -right-20 w-48 h-48 bg-neonSalmon/10 rounded-full blur-3xl pointer-events-none"></div>
+            <div class="absolute -bottom-20 -left-20 w-48 h-48 bg-neonCyan/10 rounded-full blur-3xl pointer-events-none"></div>
+
+            <!-- ILUSTRACIÓN DE PEZ KOI EN LINE-ART INCLINADO A LA IZQUIERDA -->
+            <svg class="absolute right-4 sm:right-14 top-1/2 -translate-y-1/2 -rotate-[30deg] origin-center w-[280px] sm:w-[360px] max-h-[120%] h-auto opacity-40 pointer-events-none text-neonSalmon z-0" 
+                 viewBox="-10 0 220 290" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+                
+                <!-- Cuerpo principal en arco -->
+                <path d="M 100 40 C 130 60, 145 100, 130 145 C 115 190, 85 210, 95 240" stroke-width="2.2" />
+                <path d="M 100 40 C 70 65, 65 105, 85 145 C 100 180, 108 205, 95 240" stroke-width="1.8" />
+                
+                <!-- Cabeza y Hocico con Barbillas -->
+                <path d="M 100 40 C 104 32, 96 32, 100 40" stroke-width="2" />
+                <path d="M 95 36 C 88 30, 82 32, 86 38" stroke-width="1.5" />
+                <path d="M 105 36 C 112 30, 118 32, 114 38" stroke-width="1.5" />
+                <ellipse cx="88" cy="52" rx="2.5" ry="3.5" fill="currentColor" />
+                <ellipse cx="112" cy="52" rx="2.5" ry="3.5" fill="currentColor" />
+                
+                <!-- Aleta Dorsal -->
+                <path d="M 112 75 C 132 85, 142 105, 128 125 C 122 110, 116 95, 112 75 Z" stroke-width="1.5" />
+                <path d="M 115 85 L 132 98" stroke-width="1" class="opacity-70" />
+                <path d="M 118 95 L 134 108" stroke-width="1" class="opacity-70" />
+                <path d="M 120 105 L 130 116" stroke-width="1" class="opacity-70" />
+
+                <!-- Aleta Pectoral Izquierda -->
+                <path d="M 75 80 C 45 85, 25 105, 30 125 C 45 120, 65 110, 80 98" stroke-width="1.6" />
+                <path d="M 72 85 C 50 95, 38 110, 35 120" stroke-width="1" class="opacity-70" />
+                <path d="M 70 92 C 55 102, 45 112, 42 118" stroke-width="1" class="opacity-70" />
+
+                <!-- Aleta Pectoral Derecha -->
+                <path d="M 125 80 C 155 85, 175 105, 170 125 C 155 120, 135 110, 120 98" stroke-width="1.6" />
+                <path d="M 128 85 C 150 95, 162 110, 165 120" stroke-width="1" class="opacity-70" />
+                <path d="M 130 92 C 145 102, 155 112, 158 118" stroke-width="1" class="opacity-70" />
+
+                <!-- Aleta Caudal -->
+                <path d="M 95 240 C 70 220, 45 235, 35 255 C 60 258, 80 250, 95 240" stroke-width="1.6" />
+                <path d="M 95 240 C 115 220, 145 228, 160 248 C 135 255, 110 250, 95 240" stroke-width="1.6" />
+                <path d="M 95 240 C 90 260, 95 275, 100 280 C 102 265, 98 252, 95 240" stroke-width="1.4" />
+                <path d="M 90 242 C 68 232, 50 242, 42 252" stroke-width="1" class="opacity-60" />
+                <path d="M 100 242 C 122 232, 140 238, 152 246" stroke-width="1" class="opacity-60" />
+
+                <!-- Escamas -->
+                <path d="M 92 100 Q 98 106 104 100" stroke-width="1" class="opacity-50" />
+                <path d="M 88 112 Q 95 118 102 112" stroke-width="1" class="opacity-50" />
+                <path d="M 98 112 Q 105 118 112 112" stroke-width="1" class="opacity-50" />
+                <path d="M 94 124 Q 100 130 106 124" stroke-width="1" class="opacity-50" />
+            </svg>
+
+            <div class="flex flex-col md:flex-row items-center md:items-start gap-6 relative z-10 text-center md:text-left">
+                
+                <!-- Avatar Frame -->
+                <div class="relative shrink-0 group">
+                    <div class="w-24 h-24 sm:w-28 sm:h-28 bg-cyberDark border-2 border-neonSalmon p-1 shadow-neon-salmon transition-transform duration-300 group-hover:scale-105 relative">
+                        <span class="absolute -top-1 -left-1 w-2 h-2 bg-neonCyan"></span>
+                        <span class="absolute -bottom-1 -right-1 w-2 h-2 bg-neonSalmon"></span>
+                        
+                        <div class="w-full h-full bg-black/90 flex flex-col items-center justify-center relative overflow-hidden border border-gray-800">
+                            <span class="font-mono text-xs text-neonSalmon font-bold tracking-wider">JoulesCod</span>
+                            <span class="font-mono text-2xl font-black text-neonCyan tracking-tighter my-0.5">UNLP</span>
+                            <span class="font-mono text-[9px] text-gray-400">INGENIERÍA</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Info Header Text -->
+                <div class="flex-1 space-y-3">
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                        <div>
+                            <div class="text-xs font-mono text-neonCyan flex items-center justify-center sm:justify-start gap-2">
+                                <span class="bg-neonCyan/10 px-2 py-0.5 border border-neonCyan/30">REPOSITORIO ACADÉMICO</span>
+                                <span class="text-gray-600">//</span>
+                                <span class="text-gray-400">UNLP</span>
+                            </div>
+                            <h1 class="text-2xl sm:text-4xl font-extrabold tracking-tight text-white mt-1 flex items-center justify-center sm:justify-start gap-3">
+                                <span>JoulesCod / UNLP</span>
+                                
+                                <!-- ÍCONO NÍTIDO DE FLOR DE CEREZO (SAKURA) -->
+                                <svg class="w-7 h-7 text-neonSalmon inline-block shrink-0" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+                                    <circle cx="50" cy="50" r="7" stroke-width="4"/>
+                                    <path d="M 44,44 C 36,26 38,14 46,9 C 48,12 50,13 50,13 C 50,13 52,12 54,9 C 62,14 64,26 56,44" stroke-width="4"/>
+                                    <path d="M 55,45 C 72,36 84,42 87,51 C 84,52 83,54 83,54 C 83,54 85,55 86,58 C 80,66 67,61 56,53" stroke-width="4"/>
+                                    <path d="M 53,55 C 64,69 63,82 54,87 C 53,84 51,83 51,83 C 51,83 49,84 47,86 C 39,79 42,66 48,55" stroke-width="4"/>
+                                    <path d="M 46,54 C 33,64 20,66 14,58 C 17,56 18,54 18,54 C 18,54 16,53 14,50 C 20,41 33,44 44,52" stroke-width="4"/>
+                                    <path d="M 44,45 C 28,37 17,28 19,18 C 22,19 24,20 24,20 C 24,20 25,18 27,17 C 36,22 42,34 45,43" stroke-width="4"/>
+                                    <line x1="50" y1="43" x2="50" y2="34" stroke-width="3"/>
+                                    <circle cx="50" cy="32" r="2" fill="currentColor"/>
+                                    <line x1="56" y1="47" x2="64" y2="42" stroke-width="3"/>
+                                    <circle cx="66" cy="41" r="2" fill="currentColor"/>
+                                    <line x1="54" y1="54" x2="61" y2="60" stroke-width="3"/>
+                                    <circle cx="63" cy="62" r="2" fill="currentColor"/>
+                                    <line x1="45" y1="54" x2="38" y2="60" stroke-width="3"/>
+                                    <circle cx="36" cy="62" r="2" fill="currentColor"/>
+                                    <line x1="44" y1="47" x2="36" y2="42" stroke-width="3"/>
+                                    <circle cx="34" cy="41" r="2" fill="currentColor"/>
+                                </svg>
+                            </h1>
+                        </div>
+
+                        <!-- Tag Badge Salmón -->
+                        <div class="inline-flex items-center justify-center px-3 py-1 font-mono text-xs bg-neonSalmon/10 text-neonSalmon border border-neonSalmon/40 self-center sm:self-start">
+                            Ingeniería en Computación
+                        </div>
+                    </div>
+
+                    <p class="text-gray-300 text-xs sm:text-sm leading-relaxed max-w-2xl font-mono">
+                        GitHub de apuntes, parciales, opiniones, recomendaciones y guías de TP para la carrera de <span class="text-neonSalmon font-bold">Ingeniería en Computación (UNLP)</span>.
+                    </p>
+
+                    <div class="flex flex-wrap items-center justify-center sm:justify-start gap-2 pt-1 font-mono text-xs">
+                        <span class="px-2.5 py-1 bg-black/80 text-neonCyan border border-neonCyan/30 flex items-center gap-1.5">
+                            <i data-lucide="cpu" class="w-3.5 h-3.5 text-neonCyan"></i>
+                            Hardware
+                        </span>
+                        <span class="px-2.5 py-1 bg-black/80 text-neonSalmon border border-neonSalmon/30 flex items-center gap-1.5">
+                            <i data-lucide="code-2" class="w-3.5 h-3.5 text-neonSalmon"></i>
+                            Software
+                        </span>
+                        <span class="px-2.5 py-1 bg-black/80 text-neonYellow border border-neonYellow/30 flex items-center gap-1.5">
+                            <i data-lucide="file-check" class="w-3.5 h-3.5 text-neonYellow"></i>
+                            Exámenes
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Quick Link Cards -->
+        <section class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <a href="https://github.com/JoulesCod/UNLP" target="_blank" rel="noopener noreferrer" 
+               class="group relative bg-cyberCard p-4 cyber-card-salmon flex items-center justify-between transition-all duration-300 cyber-corner">
+                <div class="flex items-center space-x-3.5">
+                    <div class="p-3 bg-neonSalmon/10 border border-neonSalmon text-neonSalmon group-hover:bg-neonSalmon group-hover:text-black transition-colors">
+                        <i data-lucide="github" class="w-6 h-6"></i>
+                    </div>
+                    <div>
+                        <div class="text-white font-bold text-sm flex items-center gap-2">
+                            <span>Repositorio GitHub</span>
+                        </div>
+                        <div class="text-xs text-gray-400 font-mono">github.com/JoulesCod/UNLP</div>
+                    </div>
+                </div>
+                <i data-lucide="arrow-up-right" class="w-5 h-5 text-neonSalmon group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform"></i>
+            </a>
+
+            <a href="https://github.com/JoulesCod" target="_blank" rel="noopener noreferrer" 
+               class="group relative bg-cyberCard p-4 cyber-card-cyan flex items-center justify-between transition-all duration-300 cyber-corner">
+                <div class="flex items-center space-x-3.5">
+                    <div class="p-3 bg-neonCyan/10 border border-neonCyan text-neonCyan group-hover:bg-neonCyan group-hover:text-black transition-colors">
+                        <i data-lucide="user" class="w-6 h-6"></i>
+                    </div>
+                    <div>
+                        <div class="text-white font-bold text-sm flex items-center gap-2">
+                            <span>Perfil de JoulesCod</span>
+                        </div>
+                        <div class="text-xs text-gray-400 font-mono">github.com/JoulesCod</div>
+                    </div>
+                </div>
+                <i data-lucide="arrow-up-right" class="w-5 h-5 text-neonCyan group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform"></i>
+            </a>
+        </section>
+
+        <!-- Git Clone Terminal Bar -->
+        <section class="bg-cyberCard border border-gray-800 p-4 space-y-2 relative overflow-hidden">
+            <div class="flex items-center justify-between text-xs font-mono">
+                <span class="text-neonYellow flex items-center gap-1.5 font-bold">
+                    <i data-lucide="terminal" class="w-4 h-4"></i>
+                    <span>COMANDO DE CLONADO</span>
+                </span>
+                <span class="text-gray-500">GIT CLONE</span>
+            </div>
+            
+            <div class="flex items-center bg-black border border-gray-800 p-2 sm:p-2.5 font-mono text-xs sm:text-sm">
+                <span class="text-neonSalmon mr-2 select-none">$</span>
+                <code class="text-neonCyan flex-1 overflow-x-auto whitespace-nowrap pr-2 select-all font-mono">
+                    git clone https://github.com/JoulesCod/UNLP.git
+                </code>
+                <button onclick="copyToClipboard('git clone https://github.com/JoulesCod/UNLP.git', 'Comando git clone copiado al portapapeles')" 
+                        class="px-3 py-1.5 bg-neonSalmon/20 hover:bg-neonSalmon hover:text-black text-neonSalmon border border-neonSalmon transition-all flex items-center gap-1.5 text-xs font-mono font-bold shrink-0 active:scale-95">
+                    <i data-lucide="copy" class="w-3.5 h-3.5"></i>
+                    <span class="hidden sm:inline">COPIAR</span>
+                </button>
+            </div>
+        </section>
+
+        <!-- Search & Interactive Resource Explorer -->
+        <section class="bg-cyberCard border border-cyberBorder p-5 sm:p-6 space-y-5 cyber-corner">
+            
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-gray-800 pb-3">
+                <div>
+                    <h2 class="text-base sm:text-lg font-bold text-white flex items-center gap-2">
+                        <i data-lucide="folder-git2" class="w-5 h-5 text-neonSalmon"></i>
+                        <span>EXPLORADOR DE MATERIAS</span>
+                    </h2>
+                </div>
+                <span id="resource-count" class="text-xs font-mono text-neonCyan bg-neonCyan/10 border border-neonCyan/30 px-3 py-1 w-fit">
+                    CARGANDO...
+                </span>
+            </div>
+
+            <!-- Search Bar Input -->
+            <div class="relative">
+                <i data-lucide="search" class="w-4 h-4 absolute left-3.5 top-1/2 -translate-y-1/2 text-neonCyan"></i>
+                <input type="text" id="search-input" 
+                       placeholder="Buscar materia o tema (ej: 'Física', 'CAD', 'AyED', 'Parciales')..." 
+                       class="w-full pl-10 pr-10 py-3 bg-black/90 border border-gray-800 text-xs sm:text-sm text-white placeholder-gray-500 focus:outline-none focus:border-neonCyan transition-all font-mono">
+                <button id="clear-search" class="hidden absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-neonSalmon p-1">
+                    <i data-lucide="x" class="w-4 h-4"></i>
+                </button>
+            </div>
+
+            <!-- Category Filter Buttons -->
+            <div class="flex flex-wrap gap-2" id="filter-buttons">
+                <button data-filter="all" class="filter-btn active px-3 py-1.5 text-xs font-mono bg-neonSalmon text-black font-bold transition-all border border-neonSalmon">
+                    TODOS
+                </button>
+                <button data-filter="1yo" class="filter-btn px-3 py-1.5 text-xs font-mono bg-black text-gray-300 hover:text-neonCyan border border-gray-800 hover:border-neonCyan transition-all">
+                    1º AÑO
+                </button>
+                <button data-filter="2yo" class="filter-btn px-3 py-1.5 text-xs font-mono bg-black text-gray-300 hover:text-neonCyan border border-gray-800 hover:border-neonCyan transition-all">
+                    2º AÑO
+                </button>
+                <button data-filter="prog" class="filter-btn px-3 py-1.5 text-xs font-mono bg-black text-gray-300 hover:text-neonCyan border border-gray-800 hover:border-neonCyan transition-all">
+                    PROGRAMACIÓN
+                </button>
+                <button data-filter="exam" class="filter-btn px-3 py-1.5 text-xs font-mono bg-black text-gray-300 hover:text-neonYellow border border-gray-800 hover:border-neonYellow transition-all">
+                    PARCIALES / FINALES
+                </button>
+            </div>
+
+            <!-- Dynamic Resource List -->
+            <div id="resources-list" class="space-y-3 pt-2 max-h-[420px] overflow-y-auto pr-1">
+                <!-- Dynamic content via JS -->
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="w-full max-w-4xl mx-auto mt-8 pt-6 border-t border-gray-800/80 flex flex-col sm:flex-row items-center justify-between text-xs text-gray-500 gap-3 font-mono z-10">
+        <div class="flex items-center gap-2">
+            <span>Creado por:</span>
+            <a href="https://github.com/JoulesCod" target="_blank" class="text-neonCyan hover:text-neonSalmon font-bold transition-colors">JoulesCod</a>
+            <span>// Facultad de Ingeniería UNLP</span>
+        </div>
+        <div class="flex items-center gap-4">
+            <button onclick="copyToClipboard(window.location.href, 'Enlace copiado')" class="hover:text-neonCyan transition-colors flex items-center gap-1">
+                <i data-lucide="share-2" class="w-3.5 h-3.5"></i> COMPARTIR
+            </button>
+            <a href="https://github.com/JoulesCod/UNLP" target="_blank" class="hover:text-neonYellow transition-colors flex items-center gap-1">
+                <i data-lucide="star" class="w-3.5 h-3.5"></i> STAR REPO
+            </a>
+        </div>
+    </footer>
+
+    <script>
+        const resources = [
+            // 1er año, 1er semestre 
+            {
+                title: "Matemática A",
+                category: "1yo",
+                tags: ["1º Año - 1° semestre", "Mate A", "derivadas", "vectores"],
+                path: "1er-Año/Matematica-A",
+                url: "https://github.com/JoulesCod/UNLP/tree/main/Mate%20A"
+            },
+            {
+                title: "Programación I",
+                category: ["1yo", "prog"],
+                tags: ["1º Año- 1° semestre", "Progra 1" ,"Pascal", "intro a la programación"],
+                path: "1er-Año/Progra-I",
+                url: "https://github.com/JoulesCod/UNLP/tree/main/Progra%20I"
+            },
+            {
+                title: "Fundamentos de Arquitectura de Computadoras (FAC)",
+                category: "1yo",
+                tags: ["1º Año - 1° semestre", "hexadecimales", "intro assembly"],
+                path: "1er-Año/FAC",
+                url: "https://github.com/JoulesCod/UNLP/tree/main/Fundamentos%20de%20Arquitectura%20de%20Computadoras%20(FAC)"
+            },
+            // 1er año, 2do semestre 
+            {
+                title: "Programación II",
+                category: ["1yo", "prog"],
+                tags: ["1º Año - 2° semestre", "Progra 2", "Java", "Pascal", "R-info"],
+                path: "2do-Año/Progra-II",
+                url: "https://github.com/JoulesCod/UNLP/tree/main/Progra%20II%20"
+            },
+            {
+                title: "Matemática B",
+                category: "1yo",
+                tags: ["1º Año - 2° semestre", "Mate B", "Análisis", "Integrales", "Gauss"],
+                path: "1er-Año/Progra-II",
+                url: "https://github.com/JoulesCod/UNLP/tree/main/Mate%20B"
+            },
+            {
+                title: "Física I",
+                category: "1yo",
+                tags: ["1º Año - 2° semestre", "Fisica 1", "Fuerzas", "Trabajo", "Ondas", "Momento", "Fluidos"],
+                path: "1er-Año/Fisica-I",
+                url: "https://github.com/JoulesCod/UNLP/tree/main/F%C3%ADsica%20I"
+            },
+
+            // 2do año, 1er semestre 
+            {
+                title: "Arquitectura de Computadoras (ACIC - CAC)",
+                category: ["2yo", "prog"],
+                tags: ["2º Año - 1° semestre", "CAC", "Assembly", "Stalings", "VonSim", "MIPS"],
+                path: "2do-Año/CAC",
+                url: "https://github.com/JoulesCod/UNLP/tree/main/Arquitecturas%20de%20Computadoras%20(ACIC%20-%20CAC)%20"
+            },
+            {
+                title: "Taller de Lenguajes I",
+                category: ["2yo", "prog"],
+                tags: ["2º Año - 1° semestre", "Programación", "C", "matrices", "punteros", "TL 1"],
+                path: "2do-Año/Taller-de-Lenguajes-I",
+                url: "https://github.com/JoulesCod/UNLP/tree/main/Taller%20de%20Lenguajes%20I%20"
+            },
+            {
+                title: "Matemática C",
+                category: "2yo",
+                tags: ["2º Año - 1° semestre", "Mate C", "Cálculo", "Taylor", "Matrices"],
+                path: "2do-Año/MateC",
+                url: "https://github.com/JoulesCod/UNLP/tree/main/Mate%20C"
+            },
+            {
+                title: "Programación III",
+                category: ["2yo", "prog"],
+                tags: ["2º Año - 2° semestre", "Progra 3", "Java", "POO", "árboles", "grafos", "Tiempo"],
+                path: "2do-Año/PrograIII",
+                url: "https://github.com/JoulesCod/UNLP/tree/main/Progra%20III"
+            },
+            // 2do año, 2do semestre 
+            {
+                title: "Física II",
+                category: "2yo",
+                tags: ["2º Año - 2° semestre", "Circuitos", "Campo Electrico, Magnetico", "inductividad"],
+                path: "2do-Año/Fisica-2",
+                url: "https://github.com/JoulesCod/UNLP/tree/main/F%C3%ADsica%20II"
+            },
+            {
+                title: "Taller de Lenguajes II",
+                category: ["2yo", "prog"],
+                tags: ["2º Año - 2° semestre", "Java", "UML", "Taller 2"],
+                path: "2do-Año/TallerII",
+                url: "https://github.com/JoulesCod/UNLP/tree/main/Taller%20de%20Lenguajes%20II"
+            },
+            {
+                title: "Conceptos de Sistemas Operativos (CSO - ISO)",
+                category: "2yo",
+                tags: ["2º Año - 2° semestre", "Linux", "Procesos", "Shell Scripting"],
+                path: "2do-Año/ISO",
+                url: "https://github.com/JoulesCod/UNLP/tree/main"
+            },
+            {
+                title: "Matemática D",
+                category: "2yo",
+                tags: ["2º Año - 2° semestre", "Mate D"],
+                path: "2do-Año/MateD",
+                url: "https://github.com/JoulesCod/UNLP/tree/main/Mate%20D"
+            },
+
+            // Parciales 
+            {
+                title: "Parciales & Finales Resueltos (UNLP)",
+                category: "exam",
+                tags: ["Exámenes", "Parciales", "Finales", "Resueltos"],
+                path: "Parciales-y-Finales",
+                url: "https://github.com/JoulesCod/UNLP/tree/main"
+            }
+        ];
+
+        let currentFilter = 'all';
+
+        document.addEventListener('DOMContentLoaded', () => {
+            lucide.createIcons();
+
+            const searchInput = document.getElementById('search-input');
+            const clearBtn = document.getElementById('clear-search');
+            const filterBtns = document.querySelectorAll('.filter-btn');
+
+            renderResources();
+
+            searchInput.addEventListener('input', (e) => {
+                const query = e.target.value;
+                clearBtn.classList.toggle('hidden', query === '');
+                renderResources();
+            });
+
+            clearBtn.addEventListener('click', () => {
+                searchInput.value = '';
+                clearBtn.classList.add('hidden');
+                renderResources();
+            });
+
+            filterBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    filterBtns.forEach(b => {
+                        b.className = "filter-btn px-3 py-1.5 text-xs font-mono bg-black text-gray-300 hover:text-neonCyan border border-gray-800 hover:border-neonCyan transition-all";
+                    });
+                    
+                    btn.className = "filter-btn active px-3 py-1.5 text-xs font-mono bg-neonSalmon text-black font-bold transition-all border border-neonSalmon";
+                    
+                    currentFilter = btn.dataset.filter;
+                    renderResources();
+                });
+            });
+        });
+
+        function renderResources() {
+            const listContainer = document.getElementById('resources-list');
+            const countBadge = document.getElementById('resource-count');
+            const searchInput = document.getElementById('search-input');
+            const query = searchInput.value.toLowerCase().trim();
+
+            const filtered = resources.filter(res => {
+                const matchesFilter = currentFilter === 'all' || 
+                    (Array.isArray(res.category) ? res.category.includes(currentFilter) : res.category === currentFilter);
+                const matchesSearch = query === '' || 
+                    res.title.toLowerCase().includes(query) || 
+                    res.path.toLowerCase().includes(query) ||
+                    res.tags.some(t => t.toLowerCase().includes(query));
+
+                return matchesFilter && matchesSearch;
+            });
+
+            countBadge.textContent = `${filtered.length} MATERIAS`;
+
+            if (filtered.length === 0) {
+                listContainer.innerHTML = `
+                    <div class="text-center py-10 text-gray-500 font-mono text-xs border border-dashed border-gray-800">
+                        <i data-lucide="alert-triangle" class="w-6 h-6 mx-auto mb-2 text-neonYellow"></i>
+                        <span>No se encontraron materias coincidentes.</span>
+                    </div>
+                `;
+                lucide.createIcons();
+                return;
+            }
+
+            listContainer.innerHTML = filtered.map(item => `
+                <a href="${item.url}" target="_blank" rel="noopener noreferrer" 
+                   class="group flex flex-col sm:flex-row sm:items-center justify-between p-3.5 bg-black/80 border border-gray-800/90 hover:border-neonCyan transition-all duration-200 gap-2 relative">
+                    <div class="flex items-start space-x-3">
+                        <div class="p-2 bg-gray-900 border border-gray-800 text-neonCyan group-hover:border-neonCyan group-hover:bg-neonCyan/10 transition-colors mt-0.5 sm:mt-0">
+                            <i data-lucide="folder-code" class="w-4 h-4"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xs sm:text-sm font-bold text-white group-hover:text-neonCyan transition-colors">
+                                ${item.title}
+                            </h3>
+                            <span class="text-[11px] font-mono text-gray-400 flex items-center gap-1 mt-0.5">
+                                <span class="text-neonSalmon">$</span> root/UNLP/${item.path}
+                            </span>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-center gap-1.5 flex-wrap self-end sm:self-center pl-9 sm:pl-0">
+                        ${item.tags.map(tag => `
+                            <span class="text-[10px] font-mono px-2 py-0.5 bg-gray-900 text-gray-300 border border-gray-800">
+                                ${tag}
+                            </span>
+                        `).join('')}
+                        <i data-lucide="arrow-up-right" class="w-3.5 h-3.5 text-gray-500 group-hover:text-neonCyan ml-1 transition-colors"></i>
+                    </div>
+                </a>
+            `).join('');
+
+            lucide.createIcons();
+        }
+
+        function copyToClipboard(text, customMessage = "Copiado") {
+            const textarea = document.createElement('textarea');
+            textarea.value = text;
+            textarea.style.position = 'fixed';
+            textarea.style.opacity = '0';
+            document.body.appendChild(textarea);
+            textarea.select();
+            
+            try {
+                document.execCommand('copy');
+                showToast(customMessage);
+            } catch (err) {
+                console.error('Copy failed: ', err);
+            } finally {
+                document.body.removeChild(textarea);
+            }
+        }
+
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            const toastMsg = document.getElementById('toast-message');
+            
+            toastMsg.textContent = message;
+            toast.classList.remove('translate-y-24', 'opacity-0');
+            toast.classList.add('translate-y-0', 'opacity-100');
+
+            setTimeout(() => {
+                toast.classList.remove('translate-y-0', 'opacity-100');
+                toast.classList.add('translate-y-24', 'opacity-0');
+            }, 2500);
+        }
+    </script>
+</body>
+</html>
