@@ -103,6 +103,15 @@
         .markdown-body code { background: #000; color: #f5fe00; padding: 0.15rem 0.4rem; border-radius: 2px; font-family: monospace; }
         .markdown-body a { color: #ff7a7a; text-decoration: underline; }
         .markdown-body a:hover { color: #05d9e8; }
+        
+        /* Modifica el estilo de las etiquetas <mark> y resaltados de Markdown */
+        .markdown-body mark {
+            background-color: rgba(245, 254, 0, 0.2); /* Amarillo neón con 20% de opacidad */
+            color: #f5fe00;                           /* Texto en amarillo neón */
+            border: 1px solid rgba(245, 254, 0, 0.4); /* Borde sutil */
+            padding: 0.1rem 0.3rem;
+            border-radius: 2px;
+        }
 
         ::-webkit-scrollbar { width: 6px; }
         ::-webkit-scrollbar-track { background: #080a0f; }
