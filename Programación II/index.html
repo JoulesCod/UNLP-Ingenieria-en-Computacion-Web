@@ -4,42 +4,88 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- Título súper optimizado para búsquedas específicas -->
-    <title>Programación II UNLP // Apuntes, R-Info, Java y Parciales | JoulesCod</title>
+    <!-- CAMBIAR: Título específico optimizado para búsquedas exactas en Google -->
+    <title>NOMBRE MATERIA UNLP // Apuntes, Consejos y Parciales | JoulesCod</title>
     
-    <meta name="description" content="Guías de TP, parciales resueltos, finales y consejos para cursar Programación 2 (Progra II) en la Facultad de Informática / Ingeniería UNLP.">
-    <link rel="canonical" href="https://joulescod.github.io/UNLP/progra-2/">
+    <!-- CAMBIAR: Meta descripción con palabras clave de la materia -->
+    <meta name="description" content="Guías de TP, parciales resueltos, finales y consejos para cursar NOMBRE MATERIA en la Universidad Nacional de La Plata (UNLP).">
     
-    <!-- Mismos CSS, Tailwind y CDN de Lucide Icons -->
-</head>
-<body class="min-h-screen bg-cyberDark text-white p-6">
+    <!-- CAMBIAR: URL Canónica relativa a la carpeta de la materia -->
+    <link rel="canonical" href="https://joulescod.github.io/UNLP/NOMBRE-MATERIA/">
 
-    <!-- Botón Volver al Hub Principal -->
-    <a href="../" class="inline-flex items-center gap-2 text-neonCyan font-mono text-xs mb-6 hover:underline">
-        ← Volver al Hub Principal UNLP
-    </a>
+    <!-- Favicons & Metas -->
+    <link rel="icon" type="image/png" sizes="192x192" href="https://joulescod.github.io/UNLP-Ingenieria-en-Computacion-Web/logo.png">
+    <link rel="shortcut icon" type="image/png" href="https://joulescod.github.io/UNLP-Ingenieria-en-Computacion-Web/logo.png">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌸</text></svg>">
 
-    <!-- Título de la Materia -->
-    <h1 class="text-3xl font-extrabold text-neonSalmon mb-2">Programación II (UNLP)</h1>
-    <p class="font-mono text-gray-400 text-sm mb-6">1º Año - 2º Semestre // Facultad de Informática & Ingeniería</p>
+    <!-- Tailwind CSS Config -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        cyberDark: '#080a0f',
+                        cyberCard: 'rgba(15, 18, 28, 0.95)',
+                        cyberBorder: '#1e2638',
+                        neonSalmon: '#ff7a7a',
+                        neonPink: '#ff2a6d',
+                        neonCyan: '#05d9e8',
+                        neonYellow: '#f5fe00',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'Fira Code', 'monospace'],
+                    },
+                    boxShadow: {
+                        'neon-salmon': '0 0 15px rgba(255, 122, 122, 0.35), inset 0 0 10px rgba(255, 122, 122, 0.15)',
+                        'neon-cyan': '0 0 15px rgba(5, 217, 232, 0.35), inset 0 0 10px rgba(5, 217, 232, 0.15)',
+                        'cyber-card': '0 10px 30px rgba(0, 0, 0, 0.8)',
+                    }
+                }
+            }
+        }
+    </script>
 
-    <!-- Sección de tus Comentarios / Tips (Tu Readme) -->
-    <article class="bg-cyberCard border border-gray-800 p-6 rounded-none space-y-4 mb-8">
-        <h2 class="text-lg font-bold text-neonCyan flex items-center gap-2">
-            💡 Mis comentarios y recomendaciones de la cursada
-        </h2>
-        <div class="text-gray-300 text-sm leading-relaxed space-y-3 font-sans">
-            <p>Acá volcás el texto de tu README: tips sobre el entorno R-Info, cómo encarar el módulo de Java, recomendaciones para los parciales, etc.</p>
-        </div>
-    </article>
+    <!-- Google Fonts & Lucide Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
 
-    <!-- Botones de Acción / Enlace a GitHub -->
-    <div class="flex flex-wrap gap-4">
-        <a href="https://github.com/JoulesCod/UNLP/tree/main/Progra%20II" target="_blank" 
-           class="px-5 py-3 bg-neonSalmon text-black font-bold font-mono text-xs flex items-center gap-2 hover:bg-white transition-colors">
-            📂 Ver Archivos y Parciales en GitHub
-        </a>
-    </div>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #080a0f;
+            color: #e2e8f0;
+            overflow-x: hidden;
+            background-image: 
+                radial-gradient(circle at 50% 0%, rgba(255, 122, 122, 0.08) 0%, transparent 60%),
+                linear-gradient(rgba(5, 217, 232, 0.04) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(5, 217, 232, 0.04) 1px, transparent 1px);
+            background-size: 100% 100%, 32px 32px, 32px 32px;
+            background-attachment: fixed;
+        }
 
-</body>
-</html>
+        .cyber-corner {
+            position: relative;
+        }
+        .cyber-corner::before {
+            content: '';
+            position: absolute;
+            top: -1px;
+            left: -1px;
+            width: 8px;
+            height: 8px;
+            border-top: 2px solid #ff7a7a;
+            border-left: 2px solid #ff7a7a;
+            pointer-events: none;
+        }
+        .cyber-corner::after {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            right: -1px;
+            width: 8px;
+            height:
