@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="es" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title> Programación 1 UNLP // Progra 1, Apuntes, Consejos y Parciales | JoulesCod</title>  <!-- MODIF -->
+    
+    <meta name="description" content="Guías de TP, parciales resueltos, finales y consejos para cursar Programación I (Progra I) en la Universidad Nacional de La Plata (UNLP).">  <!-- MODIF -->
+    
+    <link rel="canonical" href="https://github.com/JoulesCod/UNLP/tree/main/Progra%20I"> <!-- MODIF -->
+
+    <!-- Favicons & Metas -->
+    <link rel="icon" type="image/png" sizes="192x192" href="https://joulescod.github.io/UNLP-Ingenieria-en-Computacion-Web/logo.png">
+    <link rel="shortcut icon" type="image/png" href="https://joulescod.github.io/UNLP-Ingenieria-en-Computacion-Web/logo.png">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌸</text></svg>">
+
+    <!-- Tailwind CSS Config -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        cyberDark: '#080a0f',
+                        cyberCard: 'rgba(15, 18, 28, 0.95)',
+                        cyberBorder: '#1e2638',
+                        neonSalmon: '#ff7a7a',
+                        neonPink: '#ff2a6d',
+                        neonCyan: '#05d9e8',
+                        neonYellow: '#f5fe00',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'Fira Code', 'monospace'],
+                    },
+                    boxShadow: {
+                        'neon-salmon': '0 0 15px rgba(255, 122, 122, 0.35), inset 0 0 10px rgba(255, 122, 122, 0.15)',
+                        'neon-cyan': '0 0 15px rgba(5, 217, 232, 0.35), inset 0 0 10px rgba(5, 217, 232, 0.15)',
+                        'cyber-card': '0 10px 30px rgba(0, 0, 0, 0.8)',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Google Fonts, Lucide Icons & Marked.js -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #080a0f;
+            color: #e2e8f0;
+            overflow-x: hidden;
+            background-image: 
+                radial-gradient(circle at 50% 0%, rgba(255, 122, 122, 0.08) 0%, transparent 60%),
+                linear-gradient(rgba(5, 217, 232, 0.04) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(5, 217, 232, 0.04) 1px, transparent 1px);
+            background-size: 100% 100%, 32px 32px, 32px 32px;
+            background-attachment: fixed;
+        }
+
+        .cyber-corner {
+            position: relative;
+        }
+        .cyber-corner::before {
+            content: '';
+            position: absolute;
+            top: -1px;
+            left: -1px;
+            width: 8px;
+            height: 8px;
+            border-top: 2px solid #ff7a7a;
+            border-left: 2px solid #ff7a7a;
+            pointer-events: none;
+        }
+        .cyber-corner::after {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            right: -1px;
+            width: 8px;
+            height: 8px;
+            border-bottom: 2px solid #05d9e8;
+            border-right: 2px solid #05d9e8;
+            pointer-events: none;
+        }
+
+        /* Estilos personalizados para el contenido Markdown del README */
+        .markdown-body h1 { font-size: 1.5rem; font-weight: 800; color: #ff7a7a; margin-top: 1rem; margin-bottom: 0.5rem; }
+        .markdown-body h2 { font-size: 1.25rem; font-weight: 700; color: #05d9e8; margin-top: 1.25rem; margin-bottom: 0.5rem; }
+        .markdown-body h3 { font-size: 1rem; font-weight: 700; color: #fff; margin-top: 1rem; margin-bottom: 0.5rem; }
+        .markdown-body p { color: #cbd5e1; margin-bottom: 0.75rem; }
+        .markdown-body ul { list-style-type: disc; padding-left: 1.25rem; margin-bottom: 0.75rem; }
+        .markdown-body ol { list-style-type: decimal; padding-left: 1.25rem; margin-bottom: 0.75rem; }
+        .markdown-body blockquote { border-left: 3px solid #05d9e8; padding-left: 0.75rem; color: #94a3b8; font-style: italic; margin-bottom: 0.75rem; }
+        .markdown-body code { background: #000; color: #f5fe00; padding: 0.15rem 0.4rem; border-radius: 2px; font-family: monospace; }
+        .markdown-body a { color: #ff7a7a; text-decoration: underline; }
+        .markdown-body a:hover { color: #05d9e8; }
+
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #080a0f; }
+        ::-webkit-scrollbar-thumb { background: #ff7a7a; }
+        ::-webkit-scrollbar-thumb:hover { background: #05d9e8; }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between items-center p-3 sm:p-6 lg:p-8 selection:bg-neonSalmon selection:text-black relative">
+
+    <!-- Toast Notification -->
+    <div id="toast" class="fixed bottom-6 right-6 z-50 transform translate-y-24 opacity-0 transition-all duration-300 ease-out bg-cyberDark border border-neonCyan text-neonCyan px-5 py-3 shadow-neon-cyan flex items-center space-x-3 pointer-events-none font-mono text-xs">
+        <i data-lucide="terminal" class="w-4 h-4 text-neonCyan animate-pulse"></i>
+        <div>
+            <span class="text-gray-400">[SYSTEM]:</span> <span id="toast-message" class="text-white font-bold">¡Copiado al portapapeles!</span>
+        </div>
+    </div>
+
+    <!-- Main Container -->
+    <main class="w-full max-w-4xl mx-auto space-y-6 my-auto z-10">
+
+        <!-- Top Status Bar (Cyber HUD) -->
+        <div class="flex items-center justify-between text-[11px] font-mono text-gray-500 border-b border-gray-800/80 pb-2 px-1">
+            <a href="../" class="flex items-center space-x-2 text-neonCyan hover:text-neonSalmon transition-colors font-bold">
+                <i data-lucide="arrow-left" class="w-3.5 h-3.5"></i>
+                <span>VOLVER AL HUB PRINCIPAL</span>
+            </a>
+            <div class="flex items-center space-x-3 text-gray-400 font-mono text-[11px]">
+                <span>DEV: JoulesCod</span>
+                <span class="text-gray-600">•</span>
+                <span>UNLP</span>
+            </div>
+        </div>
+
+        <!-- Header Card de la Materia -->
+        <header class="relative bg-cyberCard border border-cyberBorder p-6 sm:p-8 backdrop-blur-xl overflow-hidden shadow-cyber-card cyber-corner">
+            <div class="absolute -top-20 -right-20 w-48 h-48 bg-neonSalmon/10 rounded-full blur-3xl pointer-events-none"></div>
+            <div class="absolute -bottom-20 -left-20 w-48 h-48 bg-neonCyan/10 rounded-full blur-3xl pointer-events-none"></div>
+
+            <div class="space-y-4 relative z-10">
+                <div class="flex flex-wrap items-center gap-2 font-mono text-xs">
+                    <span class="bg-neonCyan/10 text-neonCyan border border-neonCyan/30 px-2.5 py-0.5 font-bold">
+                        1º AÑO - 1º SEMESTRE  <!-- MODIF -->
+                    </span>
+                    <span class="text-gray-600">//</span>
+                    <span class="text-gray-400">
+                        Facultad de Informática UNLP  <!-- MODIF -->
+                    </span>
+                </div>
+
+                <h1 class="text-2xl sm:text-4xl font-extrabold tracking-tight text-white flex items-center gap-3">
+                    <span>Programación I</span>  <!-- MODIF -->
+                    <span class="text-neonSalmon font-mono text-lg font-normal sm:text-2xl">(Progra I)</span>  <!-- MODIF -->
+                </h1>
+
+                <div class="flex flex-wrap items-center gap-2 pt-1 font-mono text-xs">
+                    <span class="px-2.5 py-1 bg-black/80 text-neonSalmon border border-neonSalmon/30">Pascal</span>  <!-- MODIF -->
+                </div>
+            </div>
+        </header>
+
+        <!-- Botón Directo al Repositorio en GitHub -->
+        <section class="grid grid-cols-1 gap-4">   <!-- MODIF -->
+            <a href="https://github.com/JoulesCod/UNLP/tree/main/Progra%20I" target="_blank" rel="noopener noreferrer"class="group relative bg-cyberCard p-4 border border-neonSalmon/30 hover:border-neonSalmon flex items-center justify-between transition-all duration-300 cyber-corner shadow-neon-salmon">
+                <div class="flex items-center space-x-3.5">
+                    <div class="p-3 bg-neonSalmon/10 border border-neonSalmon text-neonSalmon group-hover:bg-neonSalmon group-hover:text-black transition-colors">
+                        <i data-lucide="folder-git2" class="w-6 h-6"></i>
+                    </div>
+                    <div>
+                        <div class="text-white font-bold text-sm sm:text-base flex items-center gap-2">
+                            <span>Abrir Carpeta de Archivos en GitHub</span>
+                        </div>
+                        <div class="text-xs text-gray-400 font-mono">Apuntes, parciales resueltos y TPs cargados</div>
+                    </div>
+                </div>
+                <i data-lucide="arrow-up-right" class="w-6 h-6 text-neonSalmon group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform"></i>
+            </a>
+        </section>
+
+        <!-- Bloque Principal: README Dinámico traído desde GitHub -->
+        <section class="bg-cyberCard border border-cyberBorder p-6 sm:p-8 space-y-6 cyber-corner">
+            
+            <div class="flex items-center justify-between border-b border-gray-800 pb-3">
+                <h2 class="text-base sm:text-lg font-bold text-white flex items-center gap-2">
+                    <i data-lucide="book-open-check" class="w-5 h-5 text-neonCyan"></i>
+                    <span>RESEÑA & CONSEJOS DE LA CURSADA</span>
+                </h2>
+                <span class="text-xs font-mono text-neonSalmon bg-neonSalmon/10 border border-neonSalmon/30 px-2.5 py-1">
+                    JoulesCod Notes
+                </span>
+            </div>
+
+            <!-- Contenedor donde se renderiza el README.md de GitHub -->
+            <article id="readme-content" class="markdown-body font-mono text-xs sm:text-sm text-gray-300 leading-relaxed">
+                <div class="p-4 bg-black/60 border border-gray-800 text-neonCyan font-mono animate-pulse">
+                    [SYSTEM]: Cargando README desde GitHub...
+                </div>
+            </article>
+
+            <!-- Comando y enlace directo al repo -->
+            <div class="pt-4 border-t border-gray-800/80">
+                <div class="flex items-center justify-between text-xs font-mono mb-2">
+                    <span class="text-neonYellow flex items-center gap-1.5 font-bold">
+                        <i data-lucide="terminal" class="w-4 h-4"></i>
+                        <span>ENLACE DIRECTO</span>
+                    </span>
+                </div>
+                <div class="flex items-center bg-black border border-gray-800 p-2 sm:p-2.5 font-mono text-xs">
+                    <code class="text-neonCyan flex-1 overflow-x-auto whitespace-nowrap pr-2 select-all font-mono">https://github.com/JoulesCod/UNLP/tree/main/Progra%20I</code> <!-- MODIF -->
+                    <button onclick="copyToClipboard('https://github.com/JoulesCod/UNLP/tree/main/Mate%20D', 'Enlace de la carpeta copiado')" 
+                            class="px-3 py-1.5 bg-neonSalmon/20 hover:bg-neonSalmon hover:text-black text-neonSalmon border border-neonSalmon transition-all flex items-center gap-1.5 text-xs font-mono font-bold shrink-0 active:scale-95">
+                        <i data-lucide="copy" class="w-3.5 h-3.5"></i>
+                        <span class="hidden sm:inline">COPIAR LINK</span>
+                    </button>
+                </div>
+            </div>
+
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="w-full max-w-4xl mx-auto mt-8 pt-6 border-t border-gray-800/80 flex flex-col sm:flex-row items-center justify-between text-xs text-gray-500 gap-3 font-mono z-10">
+        <div class="flex items-center gap-2">
+            <a href="../" class="text-neonCyan hover:text-neonSalmon font-bold transition-colors">← Volver al Hub Principal JoulesCod</a>
+        </div>
+        <div class="flex items-center gap-4">
+            <button onclick="copyToClipboard(window.location.href, 'Enlace de la página copiado')" class="hover:text-neonCyan transition-colors flex items-center gap-1">
+                <i data-lucide="share-2" class="w-3.5 h-3.5"></i> COMPARTIR PÁGINA
+            </button>
+        </div>
+    </footer>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        if (window.lucide) lucide.createIcons();
+
+        // Ruta exacta respetando 'Readme.md' con R mayúscula                <!-- MODIF -->
+        const readmeUrl = 'https://raw.githubusercontent.com/JoulesCod/UNLP/main/Progra%20I/Readme.md';
+
+        fetch(readmeUrl)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`HTTP ${response.status} - No se encontró el archivo`);
+                }
+                return response.text();
+            })
+            .then(markdown => {
+                document.getElementById('readme-content').innerHTML = marked.parse(markdown);
+                if (window.lucide) lucide.createIcons();
+            })
+            .catch(error => {
+                console.error('Error al cargar README:', error);
+                document.getElementById('readme-content').innerHTML = `
+                    <div class="p-4 bg-black/80 border border-neonSalmon text-neonSalmon font-mono text-xs">
+                        ⚠️ [ERROR]: No se pudo obtener el README desde GitHub.
+                    </div>
+                `;
+            });
+    });
+
+    async function copyToClipboard(text, customMessage = "Copiado") {
+        try {
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                await navigator.clipboard.writeText(text);
+            } else {
+                const textarea = document.createElement('textarea');
+                textarea.value = text;
+                textarea.style.position = 'fixed';
+                textarea.style.opacity = '0';
+                document.body.appendChild(textarea);
+                textarea.select();
+                document.execCommand('copy');
+                document.body.removeChild(textarea);
+            }
+            showToast(customMessage);
+        } catch (err) {
+            console.error('Error al copiar: ', err);
+        }
+    }
+
+    function showToast(message) {
+        const toast = document.getElementById('toast');
+        const toastMsg = document.getElementById('toast-message');
+        
+        toastMsg.textContent = message;
+        toast.classList.remove('translate-y-24', 'opacity-0');
+        toast.classList.add('translate-y-0', 'opacity-100');
+
+        setTimeout(() => {
+            toast.classList.remove('translate-y-0', 'opacity-100');
+            toast.classList.add('translate-y-24', 'opacity-0');
+        }, 2500);
+    }
+</script>
+</body>
+</html>
