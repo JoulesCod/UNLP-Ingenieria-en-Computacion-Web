@@ -240,65 +240,66 @@
     </footer>
 
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            lucide.createIcons();
+    document.addEventListener('DOMContentLoaded', () => {
+        if (window.lucide) lucide.createIcons();
 
-            // URL del archivo raw del Readme en la carpeta de Programación II
-            const readmeUrl = 'https://raw.githubusercontent.com/JoulesCod/UNLP/main/Progra%20II/Readme.md';
+        // Ruta exacta respetando 'Readme.md' con R mayúscula
+        const readmeUrl = 'https://raw.githubusercontent.com/JoulesCod/UNLP/main/Progra%20II/Readme.md';
 
-            fetch(readmeUrl)
-                .then(response => {
-                    if (!response.ok) throw new Error('No se pudo encontrar el README');
-                    return response.text();
-                })
-                .then(markdown => {
-                    document.getElementById('readme-content').innerHTML = marked.parse(markdown);
-                    if (window.lucide) lucide.createIcons();
-                })
-                .catch(error => {
-                    console.error('Error al descargar el README:', error);
-                    document.getElementById('readme-content').innerHTML = `
-                        <div class="p-4 bg-black/80 border border-neonSalmon text-neonSalmon font-mono text-xs">
-                            ⚠️ [ERROR]: No se pudo obtener el README desde GitHub. 
-                            Asegúrate de que exista el archivo en la ruta 'Progra II/README.md'.
-                        </div>
-                    `;
-                });
-        });
-
-        async function copyToClipboard(text, customMessage = "Copiado") {
-            try {
-                if (navigator.clipboard && navigator.clipboard.writeText) {
-                    await navigator.clipboard.writeText(text);
-                } else {
-                    const textarea = document.createElement('textarea');
-                    textarea.value = text;
-                    textarea.style.position = 'fixed';
-                    textarea.style.opacity = '0';
-                    document.body.appendChild(textarea);
-                    textarea.select();
-                    document.execCommand('copy');
-                    document.body.removeChild(textarea);
+        fetch(readmeUrl)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`HTTP ${response.status} - No se encontró el archivo`);
                 }
-                showToast(customMessage);
-            } catch (err) {
-                console.error('Error al copiar: ', err);
+                return response.text();
+            })
+            .then(markdown => {
+                document.getElementById('readme-content').innerHTML = marked.parse(markdown);
+                if (window.lucide) lucide.createIcons();
+            })
+            .catch(error => {
+                console.error('Error al cargar README:', error);
+                document.getElementById('readme-content').innerHTML = `
+                    <div class="p-4 bg-black/80 border border-neonSalmon text-neonSalmon font-mono text-xs">
+                        ⚠️ [ERROR]: No se pudo obtener el README desde GitHub.
+                    </div>
+                `;
+            });
+    });
+
+    async function copyToClipboard(text, customMessage = "Copiado") {
+        try {
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                await navigator.clipboard.writeText(text);
+            } else {
+                const textarea = document.createElement('textarea');
+                textarea.value = text;
+                textarea.style.position = 'fixed';
+                textarea.style.opacity = '0';
+                document.body.appendChild(textarea);
+                textarea.select();
+                document.execCommand('copy');
+                document.body.removeChild(textarea);
             }
+            showToast(customMessage);
+        } catch (err) {
+            console.error('Error al copiar: ', err);
         }
+    }
 
-        function showToast(message) {
-            const toast = document.getElementById('toast');
-            const toastMsg = document.getElementById('toast-message');
-            
-            toastMsg.textContent = message;
-            toast.classList.remove('translate-y-24', 'opacity-0');
-            toast.classList.add('translate-y-0', 'opacity-100');
+    function showToast(message) {
+        const toast = document.getElementById('toast');
+        const toastMsg = document.getElementById('toast-message');
+        
+        toastMsg.textContent = message;
+        toast.classList.remove('translate-y-24', 'opacity-0');
+        toast.classList.add('translate-y-0', 'opacity-100');
 
-            setTimeout(() => {
-                toast.classList.remove('translate-y-0', 'opacity-100');
-                toast.classList.add('translate-y-24', 'opacity-0');
-            }, 2500);
-        }
-    </script>
+        setTimeout(() => {
+            toast.classList.remove('translate-y-0', 'opacity-100');
+            toast.classList.add('translate-y-24', 'opacity-0');
+        }, 2500);
+    }
+</script>
 </body>
 </html>
