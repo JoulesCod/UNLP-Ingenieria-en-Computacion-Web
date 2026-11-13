@@ -24,14 +24,14 @@
                         neonSalmon: '#ff7a7a',
                         neonPink: '#ff2a6d',
                         neonCyan: '#05d9e8',
-                        neonAmber: '#ffb703',
+                        neonAmber: '#ffd60a',
                     },
                     fontFamily: {
                         sans: ['Inter', 'sans-serif'],
                         mono: ['JetBrains Mono', 'Fira Code', 'monospace'],
                     },
                     boxShadow: {
-                        'neon-amber': '0 0 15px rgba(255, 183, 3, 0.3), inset 0 0 10px rgba(255, 183, 3, 0.12)',
+                        'neon-amber': '0 0 15px rgba(255, 214, 10, 0.35), inset 0 0 10px rgba(255, 214, 10, 0.15)',
                         'cyber-card': '0 10px 30px rgba(0, 0, 0, 0.8)',
                     }
                 }
@@ -52,7 +52,7 @@
             color: #e2e8f0;
             overflow-x: hidden;
             background-image: 
-                radial-gradient(circle at 50% 0%, rgba(255, 183, 3, 0.08) 0%, transparent 60%),
+                radial-gradient(circle at 50% 0%, rgba(255, 214, 10, 0.08) 0%, transparent 60%),
                 linear-gradient(rgba(5, 217, 232, 0.04) 1px, transparent 1px),
                 linear-gradient(90deg, rgba(5, 217, 232, 0.04) 1px, transparent 1px);
             background-size: 100% 100%, 32px 32px, 32px 32px;
@@ -61,25 +61,25 @@
         .cyber-corner { position: relative; }
         .cyber-corner::before {
             content: ''; position: absolute; top: -1px; left: -1px; width: 8px; height: 8px;
-            border-top: 2px solid #ffb703; border-left: 2px solid #ffb703; pointer-events: none;
+            border-top: 2px solid #ffd60a; border-left: 2px solid #ffd60a; pointer-events: none;
         }
         .cyber-corner::after {
             content: ''; position: absolute; bottom: -1px; right: -1px; width: 8px; height: 8px;
             border-bottom: 2px solid #05d9e8; border-right: 2px solid #05d9e8; pointer-events: none;
         }
-        .markdown-body h1 { font-size: 1.5rem; font-weight: 800; color: #ffb703; margin-top: 1rem; margin-bottom: 0.5rem; }
+        .markdown-body h1 { font-size: 1.5rem; font-weight: 800; color: #ffd60a; margin-top: 1rem; margin-bottom: 0.5rem; }
         .markdown-body h2 { font-size: 1.25rem; font-weight: 700; color: #05d9e8; margin-top: 1.25rem; margin-bottom: 0.5rem; }
         .markdown-body h3 { font-size: 1rem; font-weight: 700; color: #fff; margin-top: 1rem; margin-bottom: 0.5rem; }
         .markdown-body p { color: #cbd5e1; margin-bottom: 0.75rem; }
         .markdown-body ul { list-style-type: disc; padding-left: 1.25rem; margin-bottom: 0.75rem; }
         .markdown-body ol { list-style-type: decimal; padding-left: 1.25rem; margin-bottom: 0.75rem; }
-        .markdown-body blockquote { border-left: 3px solid #ffb703; padding-left: 0.75rem; color: #94a3b8; font-style: italic; margin-bottom: 0.75rem; }
-        .markdown-body code { background: #000; color: #ffb703; padding: 0.15rem 0.4rem; border-radius: 2px; font-family: monospace; }
+        .markdown-body blockquote { border-left: 3px solid #ffd60a; padding-left: 0.75rem; color: #94a3b8; font-style: italic; margin-bottom: 0.75rem; }
+        .markdown-body code { background: #000; color: #ffd60a; padding: 0.15rem 0.4rem; border-radius: 2px; font-family: monospace; }
         .markdown-body a { color: #ff7a7a; text-decoration: underline; }
         .markdown-body a:hover { color: #05d9e8; }
         ::-webkit-scrollbar { width: 6px; }
         ::-webkit-scrollbar-track { background: #080a0f; }
-        ::-webkit-scrollbar-thumb { background: #ffb703; }
+        ::-webkit-scrollbar-thumb { background: #ffd60a; }
     </style>
 </head>
 <body class="min-h-screen flex flex-col justify-between items-center p-3 sm:p-6 lg:p-8 selection:bg-neonAmber selection:text-black relative">
