@@ -167,7 +167,9 @@
         </header>
 
         <!-- Botón Directo al Repositorio en GitHub -->
-        <section class="grid grid-cols-1 gap-4"> 
+        <!-- Botón Directo al Repositorio General + 3 Subpáginas de Módulos -->
+        <section class="space-y-4"> 
+            <!-- Carpeta General en GitHub -->
             <a href="https://github.com/JoulesCod/UNLP/tree/main/Progra%20II%20" target="_blank" rel="noopener noreferrer" 
                class="group relative bg-cyberCard p-4 border border-neonSalmon/30 hover:border-neonSalmon flex items-center justify-between transition-all duration-300 cyber-corner shadow-neon-salmon">
                 <div class="flex items-center space-x-3.5">
@@ -176,13 +178,75 @@
                     </div>
                     <div>
                         <div class="text-white font-bold text-sm sm:text-base flex items-center gap-2">
-                            <span>Abrir Carpeta de Archivos en GitHub</span>
+                            <span>Abrir Carpeta General en GitHub</span>
                         </div>
                         <div class="text-xs text-gray-400 font-mono">Apuntes, parciales resueltos y TPs cargados</div>
                     </div>
                 </div>
                 <i data-lucide="arrow-up-right" class="w-6 h-6 text-neonSalmon group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform"></i>
             </a>
+
+            <!-- Grid de las 3 Subpáginas (Módulos) -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                
+                <!-- Subpágina Módulo 1: Pascal -->
+                <a href="./pascal/" 
+                   class="group bg-cyberCard p-4 border border-cyberBorder hover:border-neonCyan transition-all duration-300 cyber-corner flex flex-col justify-between space-y-3 hover:shadow-neon-cyan">
+                    <div class="flex items-start justify-between">
+                        <div class="p-2.5 bg-neonCyan/10 border border-neonCyan/40 text-neonCyan group-hover:bg-neonCyan group-hover:text-black transition-colors">
+                            <i data-lucide="folder-code" class="w-5 h-5"></i>
+                        </div>
+                        <span class="text-[10px] font-mono text-neonCyan bg-neonCyan/10 border border-neonCyan/30 px-2 py-0.5">MÓDULO 1</span>
+                    </div>
+                    <div>
+                        <h3 class="text-white font-bold text-sm group-hover:text-neonCyan transition-colors">Programación Imperativa</h3>
+                        <p class="text-xs text-gray-400 font-mono mt-0.5">Lenguaje Pascal</p>
+                    </div>
+                    <div class="pt-2 border-t border-gray-800/80 flex items-center justify-between text-[11px] font-mono text-gray-500 group-hover:text-neonCyan">
+                        <span>Ver sección</span>
+                        <i data-lucide="arrow-right" class="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform"></i>
+                    </div>
+                </a>
+
+                <!-- Subpágina Módulo 2: Java -->
+                <a href="./java/" 
+                   class="group bg-cyberCard p-4 border border-cyberBorder hover:border-neonSalmon transition-all duration-300 cyber-corner flex flex-col justify-between space-y-3 hover:shadow-neon-salmon">
+                    <div class="flex items-start justify-between">
+                        <div class="p-2.5 bg-neonSalmon/10 border border-neonSalmon/40 text-neonSalmon group-hover:bg-neonSalmon group-hover:text-black transition-colors">
+                            <i data-lucide="boxes" class="w-5 h-5"></i>
+                        </div>
+                        <span class="text-[10px] font-mono text-neonSalmon bg-neonSalmon/10 border border-neonSalmon/30 px-2 py-0.5">MÓDULO 2</span>
+                    </div>
+                    <div>
+                        <h3 class="text-white font-bold text-sm group-hover:text-neonSalmon transition-colors">Orientada a Objetos</h3>
+                        <p class="text-xs text-gray-400 font-mono mt-0.5">Lenguaje Java (POO)</p>
+                    </div>
+                    <div class="pt-2 border-t border-gray-800/80 flex items-center justify-between text-[11px] font-mono text-gray-500 group-hover:text-neonSalmon">
+                        <span>Ver sección</span>
+                        <i data-lucide="arrow-right" class="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform"></i>
+                    </div>
+                </a>
+
+                <!-- Subpágina Módulo 3: R-Info -->
+                <a href="./r-info/" 
+                   class="group bg-cyberCard p-4 border border-cyberBorder hover:border-neonYellow transition-all duration-300 cyber-corner flex flex-col justify-between space-y-3 hover:shadow-neon-yellow">
+                    <div class="flex items-start justify-between">
+                        <div class="p-2.5 bg-neonYellow/10 border border-neonYellow/40 text-neonYellow group-hover:bg-neonYellow group-hover:text-black transition-colors">
+                            <i data-lucide="cpu" class="w-5 h-5"></i>
+                        </div>
+                        <span class="text-[10px] font-mono text-neonYellow bg-neonYellow/10 border border-neonYellow/30 px-2 py-0.5">MÓDULO 3</span>
+                    </div>
+                    <div>
+                        <h3 class="text-white font-bold text-sm group-hover:text-neonYellow transition-colors">Programación Concurrente</h3>
+                        <p class="text-xs text-gray-400 font-mono mt-0.5">Entorno R-Info</p>
+                    </div>
+                    <div class="pt-2 border-t border-gray-800/80 flex items-center justify-between text-[11px] font-mono text-gray-500 group-hover:text-neonYellow">
+                        <span>Ver sección</span>
+                        <i data-lucide="arrow-right" class="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform"></i>
+                    </div>
+                </a>
+
+            </div>
         </section>
 
         <!-- Bloque Principal: README Dinámico traído desde GitHub -->
