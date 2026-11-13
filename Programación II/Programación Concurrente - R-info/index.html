@@ -24,14 +24,14 @@
                         neonSalmon: '#ff7a7a',
                         neonPink: '#ff2a6d',
                         neonCyan: '#05d9e8',
-                        neonYellow: '#f5fe00',
+                        neonAmber: '#ffb703',
                     },
                     fontFamily: {
                         sans: ['Inter', 'sans-serif'],
                         mono: ['JetBrains Mono', 'Fira Code', 'monospace'],
                     },
                     boxShadow: {
-                        'neon-yellow': '0 0 15px rgba(245, 254, 0, 0.25), inset 0 0 10px rgba(245, 254, 0, 0.1)',
+                        'neon-amber': '0 0 15px rgba(255, 183, 3, 0.3), inset 0 0 10px rgba(255, 183, 3, 0.12)',
                         'cyber-card': '0 10px 30px rgba(0, 0, 0, 0.8)',
                     }
                 }
@@ -52,7 +52,7 @@
             color: #e2e8f0;
             overflow-x: hidden;
             background-image: 
-                radial-gradient(circle at 50% 0%, rgba(245, 254, 0, 0.06) 0%, transparent 60%),
+                radial-gradient(circle at 50% 0%, rgba(255, 183, 3, 0.08) 0%, transparent 60%),
                 linear-gradient(rgba(5, 217, 232, 0.04) 1px, transparent 1px),
                 linear-gradient(90deg, rgba(5, 217, 232, 0.04) 1px, transparent 1px);
             background-size: 100% 100%, 32px 32px, 32px 32px;
@@ -61,38 +61,38 @@
         .cyber-corner { position: relative; }
         .cyber-corner::before {
             content: ''; position: absolute; top: -1px; left: -1px; width: 8px; height: 8px;
-            border-top: 2px solid #f5fe00; border-left: 2px solid #f5fe00; pointer-events: none;
+            border-top: 2px solid #ffb703; border-left: 2px solid #ffb703; pointer-events: none;
         }
         .cyber-corner::after {
             content: ''; position: absolute; bottom: -1px; right: -1px; width: 8px; height: 8px;
             border-bottom: 2px solid #05d9e8; border-right: 2px solid #05d9e8; pointer-events: none;
         }
-        .markdown-body h1 { font-size: 1.5rem; font-weight: 800; color: #f5fe00; margin-top: 1rem; margin-bottom: 0.5rem; }
+        .markdown-body h1 { font-size: 1.5rem; font-weight: 800; color: #ffb703; margin-top: 1rem; margin-bottom: 0.5rem; }
         .markdown-body h2 { font-size: 1.25rem; font-weight: 700; color: #05d9e8; margin-top: 1.25rem; margin-bottom: 0.5rem; }
         .markdown-body h3 { font-size: 1rem; font-weight: 700; color: #fff; margin-top: 1rem; margin-bottom: 0.5rem; }
         .markdown-body p { color: #cbd5e1; margin-bottom: 0.75rem; }
         .markdown-body ul { list-style-type: disc; padding-left: 1.25rem; margin-bottom: 0.75rem; }
         .markdown-body ol { list-style-type: decimal; padding-left: 1.25rem; margin-bottom: 0.75rem; }
-        .markdown-body blockquote { border-left: 3px solid #f5fe00; padding-left: 0.75rem; color: #94a3b8; font-style: italic; margin-bottom: 0.75rem; }
-        .markdown-body code { background: #000; color: #f5fe00; padding: 0.15rem 0.4rem; border-radius: 2px; font-family: monospace; }
+        .markdown-body blockquote { border-left: 3px solid #ffb703; padding-left: 0.75rem; color: #94a3b8; font-style: italic; margin-bottom: 0.75rem; }
+        .markdown-body code { background: #000; color: #ffb703; padding: 0.15rem 0.4rem; border-radius: 2px; font-family: monospace; }
         .markdown-body a { color: #ff7a7a; text-decoration: underline; }
         .markdown-body a:hover { color: #05d9e8; }
         ::-webkit-scrollbar { width: 6px; }
         ::-webkit-scrollbar-track { background: #080a0f; }
-        ::-webkit-scrollbar-thumb { background: #f5fe00; }
+        ::-webkit-scrollbar-thumb { background: #ffb703; }
     </style>
 </head>
-<body class="min-h-screen flex flex-col justify-between items-center p-3 sm:p-6 lg:p-8 selection:bg-neonYellow selection:text-black relative">
+<body class="min-h-screen flex flex-col justify-between items-center p-3 sm:p-6 lg:p-8 selection:bg-neonAmber selection:text-black relative">
 
-    <div id="toast" class="fixed bottom-6 right-6 z-50 transform translate-y-24 opacity-0 transition-all duration-300 ease-out bg-cyberDark border border-neonYellow text-neonYellow px-5 py-3 shadow-neon-yellow flex items-center space-x-3 pointer-events-none font-mono text-xs">
-        <i data-lucide="terminal" class="w-4 h-4 text-neonYellow animate-pulse"></i>
+    <div id="toast" class="fixed bottom-6 right-6 z-50 transform translate-y-24 opacity-0 transition-all duration-300 ease-out bg-cyberDark border border-neonAmber text-neonAmber px-5 py-3 shadow-neon-amber flex items-center space-x-3 pointer-events-none font-mono text-xs">
+        <i data-lucide="terminal" class="w-4 h-4 text-neonAmber animate-pulse"></i>
         <div><span class="text-gray-400">[SYSTEM]:</span> <span id="toast-message" class="text-white font-bold">¡Copiado!</span></div>
     </div>
 
     <main class="w-full max-w-4xl mx-auto space-y-6 my-auto z-10">
         <div class="flex items-center justify-between text-[11px] font-mono text-gray-500 border-b border-gray-800/80 pb-2 px-1">
             <div class="flex items-center space-x-3">
-                <a href="../" class="flex items-center space-x-1.5 text-neonYellow hover:text-neonCyan transition-colors font-bold">
+                <a href="../" class="flex items-center space-x-1.5 text-neonAmber hover:text-neonCyan transition-colors font-bold">
                     <i data-lucide="arrow-left" class="w-3.5 h-3.5"></i>
                     <span>PROGRA II</span>
                 </a>
@@ -105,16 +105,16 @@
         <header class="relative bg-cyberCard border border-cyberBorder p-6 sm:p-8 backdrop-blur-xl overflow-hidden shadow-cyber-card cyber-corner">
             <div class="space-y-4 relative z-10">
                 <div class="flex flex-wrap items-center gap-2 font-mono text-xs">
-                    <span class="bg-neonYellow/10 text-neonYellow border border-neonYellow/30 px-2.5 py-0.5 font-bold">MÓDULO 3 // PROGRA II</span>
+                    <span class="bg-neonAmber/10 text-neonAmber border border-neonAmber/30 px-2.5 py-0.5 font-bold">MÓDULO 3 // PROGRA II</span>
                     <span class="text-gray-600">//</span>
                     <span class="text-gray-400">Facultad de Informática UNLP</span>
                 </div>
                 <h1 class="text-2xl sm:text-4xl font-extrabold tracking-tight text-white flex items-center gap-3">
                     <span>Programación Concurrente</span>
-                    <span class="text-neonYellow font-mono text-lg font-normal sm:text-2xl">(R-Info)</span>
+                    <span class="text-neonAmber font-mono text-lg font-normal sm:text-2xl">(R-Info)</span>
                 </h1>
                 <div class="flex flex-wrap items-center gap-2 pt-1 font-mono text-xs">
-                    <span class="px-2.5 py-1 bg-black/80 text-neonYellow border border-neonYellow/30">R-Info</span>
+                    <span class="px-2.5 py-1 bg-black/80 text-neonAmber border border-neonAmber/30">R-Info</span>
                     <span class="px-2.5 py-1 bg-black/80 text-gray-300 border border-gray-800">Robots</span>
                     <span class="px-2.5 py-1 bg-black/80 text-gray-300 border border-gray-800">Concurrencia</span>
                     <span class="px-2.5 py-1 bg-black/80 text-gray-300 border border-gray-800">Sincronización</span>
@@ -124,9 +124,9 @@
 
         <section>
             <a href="https://github.com/JoulesCod/UNLP/tree/main/Progra%20II%20/Programaci%C3%B3n%20concurrente%20(R-info)" target="_blank" rel="noopener noreferrer" 
-               class="group relative bg-cyberCard p-4 border border-neonYellow/30 hover:border-neonYellow flex items-center justify-between transition-all duration-300 cyber-corner shadow-neon-yellow">
+               class="group relative bg-cyberCard p-4 border border-neonAmber/30 hover:border-neonAmber flex items-center justify-between transition-all duration-300 cyber-corner shadow-neon-amber">
                 <div class="flex items-center space-x-3.5">
-                    <div class="p-3 bg-neonYellow/10 border border-neonYellow text-neonYellow group-hover:bg-neonYellow group-hover:text-black transition-colors">
+                    <div class="p-3 bg-neonAmber/10 border border-neonAmber text-neonAmber group-hover:bg-neonAmber group-hover:text-black transition-colors">
                         <i data-lucide="folder-git2" class="w-6 h-6"></i>
                     </div>
                     <div>
@@ -134,28 +134,28 @@
                         <div class="text-xs text-gray-400 font-mono">Prácticas resueltas, código .ri y ejercicios de parcial</div>
                     </div>
                 </div>
-                <i data-lucide="arrow-up-right" class="w-6 h-6 text-neonYellow group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform"></i>
+                <i data-lucide="arrow-up-right" class="w-6 h-6 text-neonAmber group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform"></i>
             </a>
         </section>
 
         <section class="bg-cyberCard border border-cyberBorder p-6 sm:p-8 space-y-6 cyber-corner">
             <div class="flex items-center justify-between border-b border-gray-800 pb-3">
                 <h2 class="text-base sm:text-lg font-bold text-white flex items-center gap-2">
-                    <i data-lucide="book-open-check" class="w-5 h-5 text-neonYellow"></i>
+                    <i data-lucide="book-open-check" class="w-5 h-5 text-neonAmber"></i>
                     <span>APUNTES & NOTAS DEL MÓDULO</span>
                 </h2>
-                <span class="text-xs font-mono text-neonYellow bg-neonYellow/10 border border-neonYellow/30 px-2.5 py-1">R-Info Notes</span>
+                <span class="text-xs font-mono text-neonAmber bg-neonAmber/10 border border-neonAmber/30 px-2.5 py-1">R-Info Notes</span>
             </div>
 
             <article id="readme-content" class="markdown-body font-mono text-xs sm:text-sm text-gray-300 leading-relaxed">
-                <div class="p-4 bg-black/60 border border-gray-800 text-neonYellow font-mono animate-pulse">[SYSTEM]: Buscando Readme.md en la carpeta...</div>
+                <div class="p-4 bg-black/60 border border-gray-800 text-neonAmber font-mono animate-pulse">[SYSTEM]: Buscando Readme.md en la carpeta...</div>
             </article>
 
             <div class="pt-4 border-t border-gray-800/80">
                 <div class="flex items-center bg-black border border-gray-800 p-2 sm:p-2.5 font-mono text-xs">
-                    <code class="text-neonYellow flex-1 overflow-x-auto whitespace-nowrap pr-2 select-all">https://github.com/JoulesCod/UNLP/tree/main/Progra%20II%20/Programaci%C3%B3n%20concurrente%20(R-info)</code>
+                    <code class="text-neonAmber flex-1 overflow-x-auto whitespace-nowrap pr-2 select-all">https://github.com/JoulesCod/UNLP/tree/main/Progra%20II%20/Programaci%C3%B3n%20concurrente%20(R-info)</code>
                     <button onclick="copyToClipboard('https://github.com/JoulesCod/UNLP/tree/main/Progra%20II%20/Programaci%C3%B3n%20concurrente%20(R-info)', 'Enlace copiado')" 
-                            class="px-3 py-1.5 bg-neonYellow/20 hover:bg-neonYellow hover:text-black text-neonYellow border border-neonYellow transition-all flex items-center gap-1.5 text-xs font-mono font-bold shrink-0">
+                            class="px-3 py-1.5 bg-neonAmber/20 hover:bg-neonAmber hover:text-black text-neonAmber border border-neonAmber transition-all flex items-center gap-1.5 text-xs font-mono font-bold shrink-0">
                         <i data-lucide="copy" class="w-3.5 h-3.5"></i><span class="hidden sm:inline">COPIAR</span>
                     </button>
                 </div>
@@ -164,8 +164,8 @@
     </main>
 
     <footer class="w-full max-w-4xl mx-auto mt-8 pt-6 border-t border-gray-800/80 flex items-center justify-between text-xs text-gray-500 font-mono z-10">
-        <a href="../" class="text-neonYellow hover:text-neonCyan font-bold transition-colors">← Volver a Programación II</a>
-        <button onclick="copyToClipboard(window.location.href, 'Enlace de la página copiado')" class="hover:text-neonYellow transition-colors flex items-center gap-1">
+        <a href="../" class="text-neonAmber hover:text-neonCyan font-bold transition-colors">← Volver a Programación II</a>
+        <button onclick="copyToClipboard(window.location.href, 'Enlace de la página copiado')" class="hover:text-neonAmber transition-colors flex items-center gap-1">
             <i data-lucide="share-2" class="w-3.5 h-3.5"></i> COMPARTIR
         </button>
     </footer>
@@ -184,7 +184,7 @@
                 .catch(() => {
                     document.getElementById('readme-content').innerHTML = `
                         <div class="p-4 bg-black/60 border border-gray-800 text-gray-400 font-mono text-xs">
-                            📂 Aún no hay un archivo <code class="text-neonYellow">Readme.md</code> dentro de esta subcarpeta en GitHub. Podés explorar los archivos directamente desde el botón superior.
+                            📂 Aún no hay un archivo <code class="text-neonAmber">Readme.md</code> dentro de esta subcarpeta en GitHub. Podés explorar los archivos directamente desde el botón superior.
                         </div>`;
                 });
         });
